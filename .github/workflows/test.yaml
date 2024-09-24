@@ -14,11 +14,11 @@ jobs:
             build/main
             build/tests
 
-    run:
-      needs: build
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/download-artifact@v4
-          with:
-            name: binaries
-        - run: chmod +x main && ./main 2 7
+  run:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: binaries
+      - run: chmod +x main && ./main 2 7
