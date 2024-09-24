@@ -11,7 +11,7 @@ jobs:
         with:
           name: binaries
           path: |
-            build/main
+            build/cxx_vega_simple
             build/tests
 
   run:
@@ -21,4 +21,4 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: binaries
-      - run: chmod +x main && ./main 2 7
+      - run: chmod +x cxx_vega_simple && ./main 2 7
