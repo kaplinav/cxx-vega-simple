@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include <cstdlib>
-#include "include/my_sum.h"
+#include "my_sum.h"
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
