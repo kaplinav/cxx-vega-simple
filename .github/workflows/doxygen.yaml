@@ -1,0 +1,49 @@
+name: Generate Doxygen Documentation
+
+on:
+  push:
+    branches:
+      - main  # Replace 'main' with your default branch if necessary
+  pull_request:
+
+jobs:
+  generate-docs:
+    name: Generate and Deploy Doxygen Docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Doxygen
+        run: sudo apt-get install -y doxygen graphviz
+
+      - name: Generate Doxygen Documentation
+        run: doxygen Doxyfile
+
+      - name: Upload Documentation as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: doxygen-docs
+          path: docs/html
+
+  deploy:
+    needs: generate-docs
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'  # Only deploy when pushing to main branch
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download docs artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: doxygen-docs
+          path: docs/html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/html
