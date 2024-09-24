@@ -13,6 +13,5 @@ int main(int argc, char *argv[]) {
     int a = std::atoi(argv[1]);
     int b = std::atoi(argv[2]);
     std::cout << my_sum(a, b) << '\n';
-
     return 0;
 }
