@@ -3,6 +3,17 @@
 #include <cstdlib>
 #include "my_sum.h"
 
+/**
+ * @brief Entry point
+ *
+ * Execution of the program
+ * starts here.
+ *
+ * @param argc Number of arguments
+ * @param argv List of arguments
+ *
+ * @return Program exit status
+ */
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         std::cerr << argv[0] << ": exactly two operands expected" << std::endl;
